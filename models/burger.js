@@ -1,20 +1,28 @@
 module.exports = function(sequelize, DataTypes) {
   var burgers = sequelize.define("burgers", {
-    text: DataTypes.STRING,
-    allowNull: false,
-
-    validate: {
-      len: [1, 140]
-    }
-  },
-    complete: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    }
-  });
-  return burgers;
+    burger_name: DataTypes.STRING,
+		devoured: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false
+		},
+		createdAt: {
+			allowNull: false,
+			type: Sequelize.DATE,
+			defaultValue: Date.now()
+		},
+		updatedAt: {
+			allowNull: false,
+			type: Sequelize.DATE,
+			defaultValue: Date.now()
+		}
+	}, {
+		classMethods: {
+			associate: function(models) {
+			}
+		}
+	});
+	return burgers;
 };
-
 
 // //import the orm to create functions that will interact with the database
 // //refer to 00-CatsAppProblem for structure
