@@ -1,2 +1,2 @@
 # sequelizedBurger
-sequelized version of burger
+Sequelized version of burger
