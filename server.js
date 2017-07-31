@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 //var path = require("path");
 
 var port = process.env.PORT || 3000;
-
+var db = require("./models");
 var app = express();
 
 app.use(express.static("public"));
@@ -20,5 +20,10 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controller.js");
 app.use("/", routes);
 
-//deployable via heroku
-app.listen(port);
+//sync the sequelize models
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on port: " + PORT);
+  });
+});
+//app.listen(port);

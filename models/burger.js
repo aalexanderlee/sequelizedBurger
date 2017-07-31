@@ -1,25 +1,26 @@
 module.exports = function(sequelize, DataTypes) {
   var burgers = sequelize.define("burgers", {
-    burger_name: DataTypes.STRING,
+    burger_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 140]
+      }
+    },
 		devoured: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
-		},
-		createdAt: {
-			allowNull: false,
-			type: Sequelize.DATE,
-			defaultValue: Date.now()
-		},
-		updatedAt: {
-			allowNull: false,
-			type: Sequelize.DATE,
-			defaultValue: Date.now()
 		}
-	}, {
-		classMethods: {
-			associate: function(models) {
-			}
-		}
+		// createdAt: {
+		// 	allowNull: false,
+		// 	type: Sequelize.DATE,
+		// 	defaultValue: Date.now()
+		// },
+		// updatedAt: {
+		// 	allowNull: false,
+		// 	type: Sequelize.DATE,
+		// 	defaultValue: Date.now()
+		// }
 	});
 	return burgers;
 };
