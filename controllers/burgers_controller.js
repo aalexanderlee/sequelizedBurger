@@ -17,7 +17,9 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  db.burgers.create({"burger_name" = req.body.name}).then(function(data) {
+  db.burgers.create({
+    burger_name: req.body.burger_name
+  }).then(function(data) {
     res.redirect("/");
   });
 });
@@ -35,5 +37,5 @@ router.put("/:id", function(req, res) {
   });
 });
 
-//export routes for server.js 
+//export routes for server.js
 module.exports = router;
